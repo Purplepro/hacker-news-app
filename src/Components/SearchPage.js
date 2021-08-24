@@ -1,5 +1,6 @@
 import axios from 'axios';
-import React,{useState, createContext} from 'react';
+import React,{useState} from 'react';
+import {Link} from 'react-router-dom';
 
 export default function SearchPage(props) {
         // creating state to fetch the api
@@ -14,25 +15,19 @@ export default function SearchPage(props) {
 
 
     const handleSubmit = (event) => {       
-        event.preventDefault()
-            // at the end of query which is known as full-text query accoding to the api documentation
-            // putting my e.target.value function to monitor the words that I p
+        event.preventDefault();
+            // this is where I bring my useState variable to monitor the state of the key words in order to
+            // target specific data from the api    
         let url = `http://hn.algolia.com/api/v1/search_by_date?query=${search}`; 
-        // this pushes the data fetched from the api to the results page.  
-       
-
-
         axios
         .get(url)
-        .then(response => {
-            const results = response.data   
-            console.log(results)
-            props.fetchedData?.push ({
-                pathname: '/results',
-                news: {
-                    newsData: results,
-                },
-            })
+        .then((response) => {
+            const result = response.data.hits;
+            // this pushes the data fetched from the api to the results page using history
+            props.history?.push ({
+                pathname: '/results', 
+                state: result,
+            });
         })
         .catch((error) => {
             console.log(error)
@@ -44,9 +39,11 @@ export default function SearchPage(props) {
         <div>
             <div className="search-form-container">
                 <form onSubmit={handleSubmit}>
-                    <input type='text' placeholder="search" onChange={handleSearch} value={search} />
+                    <input type='text' placeholder="search" onChange={handleSearch} value={search}/>
                     <button type="submit">Search</button>
                 </form>
+                <hr/>
+                <Link to="/history">Your Search History</Link>
             </div>
         </div>
     )
