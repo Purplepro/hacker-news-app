@@ -29,6 +29,7 @@ export default function SearchPage(props) {
                 state: result,
             });
         })
+        // catching any errors to let me know if there is something going on in the .then function
         .catch((error) => {
             console.log(error)
             console.log('Error while fetching data!')
@@ -38,7 +39,8 @@ export default function SearchPage(props) {
     return (
         <div>
             <div className="search-form-container">
-                <form onSubmit={handleSubmit}>
+                {/* my form is where I search data by keywords */}
+                <form onSubmit={handleSubmit}> 
                     <input type='text' placeholder="search" onChange={handleSearch} value={search}/>
                     <button type="submit">Search</button>
                 </form>
