@@ -46,7 +46,9 @@ const hitList = data.map((data, idx) => {
     1. Sense this was fully front end I needed something to store my data rather than storing my data on a backend database like postgresql or Mongodb.
 
     2. Localstorage came to mind and I took this method and ran with it.
-            Local storage stores data with a key and value
+            Local storage stores data with a key and value.
+
+<img src='src/Images/Screen Shot 2021-08-25 at 7.45.57 PM.png'/>
 
     3. I started off by setting my item first in order to store it into localstorage. Being that Localstorage can only save strings I had to stringify using JSON.stringify.
 
