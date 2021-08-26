@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
 
 
@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 export default function SearchHistoryPage(item) {
     
     
-
+    
     const storedData = JSON.parse(localStorage.getItem('data'));
     storedData.push(item);
     
